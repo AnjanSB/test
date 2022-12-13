@@ -17,10 +17,7 @@ cnts = cv2.findContours(threshed, cv2.RETR_LIST,
 xcnts = []
   
 for c in cnts:
-    if 3<cv2.contourArea(c) :
-       	M = cv2.moments(c)
-        cX = int(M["m10"] / M["m00"])
-	    cY = int(M["m01"] / M["m00"]) 
-    xcnts.append([cX,cY,2*cX,2*cY])
+    x,y,w,h = cv2.boundingRect(c)
+    xcnts.append([x,y,w,h])
 
 print(xcnts)
